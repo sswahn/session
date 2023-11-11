@@ -27,7 +27,7 @@ export const handler = async event => {
   try {
     const cookieName = 'token'
     const data = await session(cookieName, event)
-    // ...
+
     // handle your response:
     // if the token has been refreshed, `data` will have property called `cognito`,
     // use it to set a new HTTP cookie
