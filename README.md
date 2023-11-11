@@ -1,4 +1,4 @@
-# Session
+# Session · [![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/sswahn/session/blob/main/LICENSE) ![npm version](https://img.shields.io/npm/v/@sswahn/session)
 
 This library provides a simple and efficient way to manage user sessions using AWS Cognito for authentication.
 
