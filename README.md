@@ -20,6 +20,7 @@ const response = await session(cookieName, event)
 ```
 
 ## Example
+Note that if your token has been refreshed, you should set a new cookie. 
 ```javascript
 import session from '@sswahn/session'
 
@@ -27,13 +28,26 @@ export const handler = async event => {
   try {
     const cookieName = 'token'
     const data = await session(cookieName, event)
-
-    // handle your response:
-    // if the token has been refreshed, `data` will have property called `cognito`,
-    // use it to set a new HTTP cookie
-    // otherwise just respond with a Successful message
+    
+    const cookie = data.cognito  ? {
+      'Set-Cookie': `token=${data.cognito.AuthenticationResult.AccessToken}; HttpOnly; Secure; SameSite=Strict; Path=/; max-age=${86400}`
+    } : {}
+    return {
+      statusCode: 200,
+      body: JSON.stringify({ message: 'Request successful' }),
+      headers: {
+        'Content-Type': 'application/json',
+        ...cookie
+      }
+    }
   } catch (error) {
-    // handle your unauthorized access response
+    return {
+      statusCode: 401,
+      body: JSON.stringify({ error: 'Unauthorized' }),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }
   }
 }
 ```
