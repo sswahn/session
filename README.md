@@ -26,8 +26,7 @@ import session from '@sswahn/session'
 
 export const handler = async event => {
   try {
-    const cookieName = 'token'
-    const data = await session(cookieName, event)
+    const data = await session('token', event)
     
     const cookie = data.cognito ? {
       'Set-Cookie': `token=${data.cognito.AuthenticationResult.AccessToken}; HttpOnly;`
