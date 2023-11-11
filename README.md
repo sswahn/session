@@ -65,7 +65,8 @@ Ensure the following environmental variables are set in your Lambda function:
 - CLIENT_ID: The AWS Cognito client ID.
 
 ## Database Design
-- This library assumes a DynamoDB table for storing session information. 
+This library assumes a DynamoDB table for storing session information.  
+
 - The table's partition key must be the user's sub (subject) obtained from the decoded JWT token and should be stored when the user initially logs in, and removed when the user logs out.
 - The login and logout process is out of the scope of this library.
 - Then minimum requirements for the session table design should be as follows:
