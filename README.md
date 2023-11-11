@@ -23,10 +23,11 @@ const response = await session(cookieName, event)
 Ensure the following environmental variables are set in your Lambda function:
 
 - SESSION_TABLE: The name of your DynamoDB table for storing session information.
+- PARTITION_KEY: The partition key of your DynamoDB session table.
 - CLIENT_ID: The AWS Cognito client ID.
 
 ## Database Design
-This library assumes a DynamoDB table design for storing session information. The table should have a partition key named partition_key. The session data can be associated with the user's sub (subject) obtained from the decoded JWT token.
+This library assumes a DynamoDB table for storing session information. Then minimum required table design should be as follows:
 ```plaintext
 Table Name: your_session_table
 
@@ -35,3 +36,6 @@ Attributes:
 - token (String)
 - timestamp (Number)
 ```
+
+## License
+Session is [MIT Licensed](https://github.com/sswahn/session/blob/main/LICENSE)
