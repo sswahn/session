@@ -13,7 +13,7 @@ const deleteSession = token => {
     const values = {
       TableName: process.env.SESSION_TABLE,
       Key: {
-        partition_key: { S: decodeToken(token).sub },
+        [process.env.PARTITION_KEY]: { S: decodeToken(token).sub },
       },
     }
     const client = new DynamoDBClient()
