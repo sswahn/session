@@ -65,7 +65,10 @@ Ensure the following environmental variables are set in your Lambda function:
 - CLIENT_ID: The AWS Cognito client ID.
 
 ## Database Design
-This library assumes a DynamoDB table for storing session information. The table's partition key must be the user's sub (subject) obtained from the decoded JWT token and should be stored when the user logs in and removed when the user logs out. The login and logout process is unrelated to this library. For the initial authentication with cognito you can implement your own system or use [@sswahn/cognito](https://github.com/sswahn/cognito). Then minimum requirements for the session table design should be as follows:
+- This library assumes a DynamoDB table for storing session information. 
+- The table's partition key must be the user's sub (subject) obtained from the decoded JWT token and should be stored when the user initially logs in, and removed when the user logs out.
+- The login and logout process is out of the scope of this library.
+- Then minimum requirements for the session table design should be as follows:
 ```plaintext
 Table Name: your_session_table
 
@@ -74,6 +77,8 @@ Attributes:
 - token (String)
 - timestamp (Number)
 ```
+
+For the initial authentication with cognito you can implement your own system or use [@sswahn/cognito](https://www.npmjs.com/package/@sswahn/cognito).
 
 ## License
 Session is [MIT Licensed](https://github.com/sswahn/session/blob/main/LICENSE)
