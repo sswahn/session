@@ -24,7 +24,7 @@ const deleteSession = token => {
   }
 }
 
-const getRefreshToken = token => {
+const getSession = token => {
   try {
     const values = {
       TableName: process.env.SESSION_TABLE,
@@ -42,19 +42,19 @@ const getRefreshToken = token => {
 
 const refreshSession = async token => {
   try {
-    const refreshToken = await getRefreshToken(token)
+    const data = await getSession(token)
     const values = {
       AuthFlow: 'REFRESH_TOKEN_AUTH',
       ClientId: process.env.CLIENT_ID,
       AuthParameters: {
-        REFRESH_TOKEN: refreshToken.Item.token.S
+        REFRESH_TOKEN: data.Item.token.S
       }
     }
     const client = new CognitoIdentityProviderClient()
     const command = new InitiateAuthCommand(values)
     const response = await client.send(command)
     return { 
-      dynamoDB: refreshToken,
+      dynamoDB: data,
       cognito: response
     }
   } catch (error) {
