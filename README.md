@@ -29,7 +29,7 @@ export const handler = async event => {
     const cookieName = 'token'
     const data = await session(cookieName, event)
     
-    const cookie = data.cognito ? {
+    const newCookie = data.cognito ? {
       'Set-Cookie': `token=${data.cognito.AuthenticationResult.AccessToken}; HttpOnly;`
     } : {}
 
@@ -38,7 +38,7 @@ export const handler = async event => {
       body: JSON.stringify({ message: 'Request successful' }),
       headers: {
         'Content-Type': 'application/json',
-        ...cookie
+        ...newCookie
       }
     }
   } catch (error) {
