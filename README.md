@@ -26,7 +26,7 @@ import session from '@sswahn/session'
 export const handler = async event => {
   try {
     const cookieName = 'token'
-    const data = await session(cookieName, event);
+    const data = await session(cookieName, event)
     ...
     // handle your response:
     // if the token has been refreshed, `data` will have property called `cognito`,
