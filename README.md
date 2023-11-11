@@ -2,6 +2,14 @@
 
 This library provides a simple and efficient way to manage user sessions using AWS Cognito for authentication.
 
+## Features
+- **Efficient Session Management:** Simplify user session management in your AWS Cognito-authenticated applications.
+- **Token Refresh Handling:** The library seamlessly handles token refreshes, allowing you to update HTTP cookies when necessary.
+- **Intuitive API:** The `session` function provides a straightforward interface for managing sessions, making it easy to integrate into your Lambda functions.
+- **Environment Variable Configuration:** Utilize environment variables for flexible configuration, including DynamoDB table names, partition keys, and AWS Cognito client IDs.
+- **DynamoDB Integration:** Designed to work seamlessly with DynamoDB, the library assumes at least a minimal table design for storing session information.
+
+  
 ## Installation
 Using npm.
 ```bash
