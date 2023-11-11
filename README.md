@@ -38,7 +38,9 @@ export const handler = async event => {
     
     const headers = {
       'Content-Type': 'application/json',
-      ...(data.cognito && { 'Set-Cookie': `token=${data.cognito.AuthenticationResult.AccessToken}; HttpOnly;` }),
+      ...(data.cognito && {
+        'Set-Cookie': `token=${data.cognito.AuthenticationResult.AccessToken}; HttpOnly;`
+      }),
     }
 
     return {
