@@ -28,9 +28,10 @@ export const handler = async event => {
     const cookieName = 'token'
     const data = await session(cookieName, event);
     ...
-    // handle your response
-    // if the token has been refreshed, `data` will have property called cognito, use it to set a new HTTP cookie
-    // otherwise just response with a Successful message
+    // handle your response:
+    // if the token has been refreshed, `data` will have property called `cognito`,
+    // use it to set a new HTTP cookie
+    // otherwise just respond with a Successful message
   } catch (error) {
     // handle your unauthorized access response
   }
