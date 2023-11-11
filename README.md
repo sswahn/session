@@ -19,6 +19,24 @@ Call the session function passing a cookie name and the Lambda event parameter.
 const response = await session(cookieName, event)
 ```
 
+## Example
+```javascript
+import session from '@sswahn/session'
+
+export const handler = async event => {
+  try {
+    const cookieName = 'token'
+    const data = await session(cookieName, event);
+    ...
+    // handle your response
+    // if the token has been refreshed, `data` will have property called cognito, use it to set a new HTTP cookie
+    // otherwise just response with a Successful message
+  } catch (error) {
+    // handle your unauthorized access response
+  }
+}
+```
+
 ## Environmental Variables
 Ensure the following environmental variables are set in your Lambda function:
 
