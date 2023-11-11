@@ -81,14 +81,16 @@ const validateSession = async token => {
   }
 }
 
-const session(cookieName, event) {
+const session = (cookieName, event) => {
   try {
     if (!event.headers.Cookie || !event.headers.Cookie.includes(`${cookieName}=`)) {
       throw new Error('Unauthorized')
     }
-    const token = headers.Cookie.split('id=')[1].split(';')[0]
+    const token = event.headers.Cookie.split(`${cookieName}=`)[1].split(';')[0]
     return validateSession(token)
   } catch (error) {
     throw new Error(error)
   }
 }
+
+export default session
