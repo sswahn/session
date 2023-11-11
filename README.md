@@ -35,8 +35,10 @@ import session from '@sswahn/session'
 export const handler = async event => {
   try {
     const data = await session('token', event)
+
+    const { AccessToken } = data.cognito?.AuthenticationResult
     
-    const cookie = data.cognito ? { 'Set-Cookie': `token=${data.cognito.AuthenticationResult.AccessToken}; HttpOnly;` } : {}
+    const cookie = AccessToken ? { 'Set-Cookie': `token=${AccessToken}; HttpOnly;` } : {}
 
     return {
       statusCode: 200,
