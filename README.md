@@ -32,6 +32,7 @@ export const handler = async event => {
     const cookie = data.cognito ? {
       'Set-Cookie': `token=${data.cognito.AuthenticationResult.AccessToken}; HttpOnly;`
     } : {}
+
     return {
       statusCode: 200,
       body: JSON.stringify({ message: 'Request successful' }),
