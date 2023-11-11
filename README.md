@@ -30,7 +30,7 @@ export const handler = async event => {
     const data = await session(cookieName, event)
     
     const cookie = data.cognito ? {
-      'Set-Cookie': `token=${data.cognito.AuthenticationResult.AccessToken}; HttpOnly; Secure; SameSite=Strict; Path=/; max-age=${86400}`
+      'Set-Cookie': `token=${data.cognito.AuthenticationResult.AccessToken}; HttpOnly;`
     } : {}
     return {
       statusCode: 200,
