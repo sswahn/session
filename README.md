@@ -23,7 +23,7 @@ const response = await session(cookieName, event)
 Ensure the following environmental variables are set in your Lambda function:
 
 - SESSION_TABLE: The name of your DynamoDB table for storing session information.
-- PARTITION_KEY: The partition key of your DynamoDB session table.
+- PARTITION_KEY: The name of the partition key of your DynamoDB session table.
 - CLIENT_ID: The AWS Cognito client ID.
 
 ## Database Design
