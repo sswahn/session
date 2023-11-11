@@ -36,17 +36,15 @@ export const handler = async event => {
   try {
     const data = await session('token', event)
     
-    const headers = {
-      'Content-Type': 'application/json',
-      ...(data.cognito && {
-        'Set-Cookie': `token=${data.cognito.AuthenticationResult.AccessToken}; HttpOnly;`
-      }),
-    }
+    const cookie = data.cognito ? { 'Set-Cookie': `token=${data.cognito.AuthenticationResult.AccessToken}; HttpOnly;` } : {}
 
     return {
       statusCode: 200,
       body: JSON.stringify({ message: 'Request successful' }),
-      headers
+      headers: {
+        'Content-Type': 'application/json',
+        ...cookie,
+      }
     }
   } catch (error) {
     return {
